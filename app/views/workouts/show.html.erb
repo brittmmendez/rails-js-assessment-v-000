@@ -10,10 +10,9 @@
   <iframe class="embed-responsive-item" src="<%=@workout.website %>" allowfullscreen></iframe>
 </div>
 
-<table>
+<table style="width:100%"%>
   <tr>
-      <td> Website: <a href="<%=@workout.website %>" target="_blank" ><%=@workout.website %></a> 
-      </td>
+      Website: <a href="<%=@workout.website %>" target="_blank" ><%=@workout.website %></a> 
   </tr>
   <tr>
     <td> Duration: <%=@workout.duration %> </td>
@@ -42,6 +41,10 @@
    <% end %><br>
 
 <% if @workout.comments %>
+<div id="loadComments">
+<%= link_to "Load Comments", workout_comments_path(@workout) %>
+</div>
+
   <% @workout.comments.each do |comment| %>
     <p> <strong> <%= comment.user.email%> :</strong> <%=comment.content%> </p>
   <% end %>
