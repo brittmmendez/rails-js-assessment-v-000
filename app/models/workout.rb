@@ -11,6 +11,7 @@ class Workout < ActiveRecord::Base
     accepts_nested_attributes_for :equipments, reject_if: :all_blank
 
     has_many :favorites
+    has_many :comments
 
     validates :name, :duration, :website, :training_type_name, presence: true
 

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :workouts, only: [:index, :show, :new, :edit]
   end
 
-  resources :workouts
+  resources :workouts do
+      resources :comments, only: [:index, :create]
+    end
 
   post "/favorites/new", to: "favorites#new"
   post "/users/find", to: "users#find"

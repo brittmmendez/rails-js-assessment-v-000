@@ -10,14 +10,39 @@
   <iframe class="embed-responsive-item" src="<%=@workout.website %>" allowfullscreen></iframe>
 </div>
 
-<p> Duration: <%=@workout.duration %> </p>
-<p> Difficulty: <%=@workout.difficulty %> </p>
-<p> Body Focus: <%=@workout.category.name %> </p>
-<p> Training Type: <%=@workout.training_type_name %> </p>
-<p> Website: <a href="<%=@workout.website %>" target="_blank" ><%=@workout.website %></a> </p>
-    Equipment Needed:
-    <ul>
-      <% @workout.equipments.each do |equipment| %>
+<table>
+  <tr>
+      <td> Website: <a href="<%=@workout.website %>" target="_blank" ><%=@workout.website %></a> 
+      </td>
+  </tr>
+  <tr>
+    <td> Duration: <%=@workout.duration %> </td>
+    <td> Training Type: <%=@workout.training_type_name %> </td>
+  </tr>
+  <tr>
+    <td> Difficulty: <%=@workout.difficulty %> </td>
+    <td> Body Focus: <%=@workout.category.name %> </td>
+  </tr>
+  <tr>
+    <td> Equipment:
+      <ul>
+        <% @workout.equipments.each do |equipment| %>
         <li> <%= equipment.name %> </li>
-      <%end%>
-    </ul>
+        <%end%>
+      </ul>
+    </td>
+  </tr>
+ 
+</table>
+
+<h4>Add a comment:</h4>
+   <%= form_for @comment, url: workout_comments_path(@workout, @comment) do |f| %>
+     <%= f.text_area :content, class: 'commentBox' %><br>
+     <button type="submit" class="btn btn-sm btn-primary">Create Comment</button>
+   <% end %><br>
+
+<% if @workout.comments %>
+  <% @workout.comments.each do |comment| %>
+    <p> <strong> <%= comment.user.email%> :</strong> <%=comment.content%> </p>
+  <% end %>
+<% end %>

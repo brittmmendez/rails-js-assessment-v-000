@@ -7,7 +7,7 @@
 </ul>
  <article id="nav_helper"> <%= form_tag users_find_path do %>
       <%= text_field_tag :email, nil, placeholder: 'Enter User Email' %>
-      <%= submit_tag "Find User" %> </article>
+      <button type="submit" class="btn btn-sm btn-primary">Find User!</button>
       <%end%>
 <% else %>
   <li> <%= link_to("Home", root_path) %> </li>
