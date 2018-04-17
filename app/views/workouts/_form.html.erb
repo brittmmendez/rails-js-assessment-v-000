@@ -42,6 +42,9 @@
     <%= equipments_fields.text_field :name, placeholder: "Add Equipment Here!"  %>
   <% end %> </div>
 
+  <div class="field"> <%=f.label :description, "Tell why you love it!"  %> <br>
+    <%=f.text_area :description %></div>
+
 
 <div class="actions">
     <button type="submit" class="btn btn-sm btn-primary">Finished!</button>

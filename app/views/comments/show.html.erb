@@ -1,1 +1,1 @@
-<li> <strong> <%= @comment.user.email %> </strong><%=@comment.content%> </li>
+<li> <strong> <%= link_to @comment.user.email, user_path(@comment.user) %> </strong><%=@comment.content%> </li>

@@ -1,13 +1,15 @@
+<a href="#" class="js-next" data-id="<%=@workout.id%>">Next...</a>
+
 <div class="container-fluid text-center">
-  <h2> <%=@workout.name %> </h2>
-  <p> Added by: <%= link_to @workout.user.email, user_path(@workout.user)%> </p>
-  <p> <%= last_updated @workout %></p>
+  <h2 class="workoutName"> <%=@workout.name %> </h2>
+  <p> Added by: <%= link_to @workout.user.email, user_path(@workout.user), :class => "userName"%> </p>
+  <p> <%= last_updated @workout %></p> <!--not sure how to update this yet!-->
 </div>
 
-<%= render 'action_options' %>
+<%= render 'action_options' %><!--not sure how to update this yet!-->
 
 <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="<%=@workout.website %>" allowfullscreen></iframe>
+  <iframe class="website embed-responsive-item" src="<%=@workout.website %>" allowfullscreen></iframe>
 </div>
 
 <table style="width:100%"%>
@@ -34,7 +36,7 @@
  
 </table>
 
-<h4>Add a comment:</h4>
+<h4>Add a Review:</h4>
    <%= form_for @comment, url: workout_comments_path(@workout) do |f| %>
      <%= f.text_area :content, class: 'commentBox' %><br>
      <button type="submit" class="btn btn-sm btn-primary">Create Comment</button>
@@ -42,10 +44,28 @@
 
 
 
-<%= link_to "Load Comments", workout_comments_path(@workout, @comment), :class => "load_comments" %>
+<%= link_to "Workout Reviews", workout_comments_path(@workout, @comment), :class => "load_comments" %>
 
 
 <div class= "comments" >
   <ol>
   </ol>
 </div>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $(".js-next").on("click", function() {
+      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+      $.getJSON("/workouts/" + nextId + "/workout_data", function(data) {
+        $(".workoutName").text(data["name"]);
+        $(".userName").attr("data-id", data["user_id"])
+        $(".userName").attr("href", "/users/" + data["user_id"])
+        $(".userName").text(data["user"]["email"])
+        $(".website").attr("src", data["website"])
+        // re-set the id to current on the link
+        $(".js-next").attr("data-id", data["id"]);
+      });
+    });
+  });
+  </script>

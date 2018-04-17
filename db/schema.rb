@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20180416150132) do
     t.string   "name"
     t.integer  "duration"
     t.string   "difficulty"
+    t.text     "description"
     t.string   "training_type"
     t.string   "website"
     t.string   "photo"

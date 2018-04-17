@@ -2,6 +2,11 @@ class WorkoutsController < ApplicationController
   before_action :authenticate_user!
   include WorkoutsHelper
 
+  def workout_data
+    workout = Workout.find(params[:id])
+    render json: WorkoutSerializer.serialize(workout)
+  end
+
   def index
     # provide a list of training_types/cats to the view for the filter control
     @training_types=TrainingType.all
@@ -85,7 +90,7 @@ class WorkoutsController < ApplicationController
   private
 
   def workout_params
-    params.require(:workout).permit(:user_id, :name, :duration, :difficulty, :category_id, :training_type_name, :website, equipment_ids:[], equipments_attributes: [:name])
+    params.require(:workout).permit(:user_id, :name, :duration, :description, :difficulty, :category_id, :training_type_name, :website, equipment_ids:[], equipments_attributes: [:name])
   end
 
 end

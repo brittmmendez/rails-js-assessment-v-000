@@ -10,6 +10,10 @@
           <!-- Know I could do <%= link_to workout.name, user_workout_path(@user, workout) %> but wanted image to be wrapped in url-->
         <img src="<%=workout.photo%>" width="150" height="120" alt="Image"><br></a>
         <%=workout.training_type_name%> || <%=workout.duration%> Minutes</div>
+        <div id="body-<%= workout.id %>" class="container-fluid text-center">
+          <button class="js-more btn btn-sm btn-primary" data-id="<%= workout.id %>">Sweat Facts</button>
+          <br>
+          <br></div>
         <br>
         <br>
       </div>
