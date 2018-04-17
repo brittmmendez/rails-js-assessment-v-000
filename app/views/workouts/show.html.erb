@@ -40,12 +40,12 @@
      <button type="submit" class="btn btn-sm btn-primary">Create Comment</button>
    <% end %><br>
 
-<% if @workout.comments %>
-<div id="loadComments">
-<%= link_to "Load Comments", workout_comments_path(@workout) %>
-</div>
 
-  <% @workout.comments.each do |comment| %>
-    <p> <strong> <%= comment.user.email%> :</strong> <%=comment.content%> </p>
-  <% end %>
-<% end %>
+
+<%= link_to "Load Comments", workout_comments_path(@workout, @comment), :class => "load_comments" %>
+
+
+<div class= "comments" id="submitted-comments">
+  <ol>
+  </ol>
+</div>
