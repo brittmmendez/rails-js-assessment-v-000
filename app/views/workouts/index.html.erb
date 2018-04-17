@@ -16,9 +16,11 @@
       <%= submit_tag "Filter" %>
     <% end %>
     <br>
-    <br>
   </div>
 <%end%>
+
+<%= page_entries_info @workouts %>
+<%= paginate @workouts %>
 
 <div class="container">
   <div class="row">
