@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = @workout.comments
-    render :json => @comments
-   
+    render :json => @comments  
   end
 
   def create
