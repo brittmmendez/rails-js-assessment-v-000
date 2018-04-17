@@ -13,7 +13,7 @@ class WorkoutsController < ApplicationController
 
   def show
     @comment = Comment.new
-    
+
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
       @workout = @user.workouts.find_by_id(params[:id])
@@ -31,6 +31,7 @@ class WorkoutsController < ApplicationController
       end
 
       Workout.add_view(@workout)
+      
     end
   end
 

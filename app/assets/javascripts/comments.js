@@ -1,5 +1,6 @@
+// Get Comments via AJAX
 $(function(){
-  $(document).on("click", "a.load_comments", function(e) {
+  $("a.load_comments").on("click", function(e) {
     //Requesting JSON
     $.get(this.href).success(function(json){
       var $ol = $("div.comments ol")
@@ -8,8 +9,25 @@ $(function(){
         $ol.append("<li> <strong>" + comment.user.email + "</strong>: " +  comment.content + "</li>");
       })
     })
-    //load that response into the HTML of the page
     e.preventDefault();
   })
 })
 
+
+// Submit Comments via AJAX
+$(function(){
+  $("#new_comment").on("submit", function(e){
+    e.preventDefault()
+    $.ajax({
+      type: "POST",
+      url: this.action,
+      data: $(this).serialize(),
+      success: function(response){
+        $("#comment_content").val("");
+        var $ol = $("div.comments ol")
+        $ol.append(response);
+      }
+    });
+    e.preventDefault();
+  })
+});

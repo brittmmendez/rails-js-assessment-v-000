@@ -35,7 +35,7 @@
 </table>
 
 <h4>Add a comment:</h4>
-   <%= form_for @comment, url: workout_comments_path(@workout, @comment) do |f| %>
+   <%= form_for @comment, url: workout_comments_path(@workout) do |f| %>
      <%= f.text_area :content, class: 'commentBox' %><br>
      <button type="submit" class="btn btn-sm btn-primary">Create Comment</button>
    <% end %><br>
@@ -45,7 +45,7 @@
 <%= link_to "Load Comments", workout_comments_path(@workout, @comment), :class => "load_comments" %>
 
 
-<div class= "comments" id="submitted-comments">
+<div class= "comments" >
   <ol>
   </ol>
 </div>
