@@ -15,8 +15,8 @@
         $(".duration").html(data["duration"])
         $(".difficulty").html(data["difficulty"])  
         $(".training").html(data["training_type"]["name"]) 
-         $(".focus").html(data["category"]["name"]) 
-        $(".equipment").html(data["equipment"]) 
+        $(".focus").html(data["category"]["name"]) 
+        $(".equipment").html(data["equipments"]["name"]) 
         $("#new_comment").attr("action", "/workouts/" + id + "/comments")
         $(".load_comments").attr("href", "/workouts/" + id + "/comments")
         $(".comments").html("")
@@ -48,6 +48,7 @@
         $("#new_comment").attr("action", "/workouts/" + id + "/comments")
         $(".load_comments").attr("href", "/workouts/" + id + "/comments")
         $(".comments").html("")
+
 
         // re-set the id to current on the link
         $(".js-next").attr("data-id", id);

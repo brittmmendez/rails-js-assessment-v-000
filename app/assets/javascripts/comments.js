@@ -6,12 +6,14 @@ $(function(){
       var $ol = $("div.comments ol")
       $ol.html("")
       json.forEach(function(comment){
+        //debugger
         $ol.append("<li> <strong> <a href='/users/"+comment.user.id + "'>" + comment.user.email + "</a></strong>: " +  comment.content + "</li>");
       })
     })
     e.preventDefault();
   })
 })
+
 
 
 // Submit Comments via AJAX
@@ -31,3 +33,5 @@ $(function(){
     e.preventDefault();
   })
 });
+
+

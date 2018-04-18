@@ -3,6 +3,7 @@ class WorkoutSerializer < ActiveModel::Serializer
 
   belongs_to :user
   has_many :comments
+  has_many :equipments
 
 
   # #DIY Serializer:

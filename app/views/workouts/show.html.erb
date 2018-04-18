@@ -1,15 +1,15 @@
 <div class="container-fluid text-center">
   <h2 class="workoutName"> <%=@workout.name %> </h2>
   <p> Added by: <%= link_to @workout.user.email, user_path(@workout.user), :class => "userName"%> </p>
-  <p> <%= last_updated @workout %></p> <!--not sure how to update this yet!-->
+  <p class="updated"> <%= last_updated @workout %></p> <!--not sure how to update this yet!-->
 </div>
 
-<a href="#" class="js-back" data-id="<%=@workout.id%>"> Back...</a>
-<a href="#" class="js-next" data-id="<%=@workout.id%>">...Next</a>
-
-<br>
-
 <%= render 'action_options' %><!--not sure how to update this yet!-->
+
+<div class="container-fluid text-center">
+<a href="#" class="js-back previous shift" data-id="<%=@workout.id%>"> &laquo; Previous</a>
+<a href="#" class="js-next next shift" data-id="<%=@workout.id%>">Next &raquo;</a>
+</div>
 
 <div class="embed-responsive embed-responsive-16by9">
   <iframe class="vid embed-responsive-item" src="<%=@workout.website %>" allowfullscreen></iframe>
@@ -39,9 +39,11 @@
      <button type="submit" class="btn btn-sm btn-primary">Create Comment</button>
    <% end %><br>
 
+
+   <!--Not sure how to get this to load comments for new workout after I use the next or back buttons seems event listener isn't picking it up-->
 <%= link_to "Workout Reviews", workout_comments_path(@workout, @comment), :class => "load_comments" %>
 
-<div class= "comments" >
+<div class= "comments" > 
   <ol>
   </ol>
 </div>
