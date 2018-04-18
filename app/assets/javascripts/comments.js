@@ -25,6 +25,7 @@ $(function(){
       url: this.action,
       data: $(this).serialize(),
       success: function(response){
+        //this is where the code shoudl go to make new comment right?
         $("#comment_content").val("");
         var $ol = $("div.comments ol")
         $ol.append(response);
@@ -34,4 +35,32 @@ $(function(){
   })
 });
 
+// $(function() {
+//   function Comment(data) {
+//     this.content = data.content;
+//   }
 
+//   Comment.prototype.formatComment = function() {
+//     var html = "" ;
+//     html += "<strong>You</strong>" + " say: " + this.content
+//     $("div.comments ol").append(html);
+//   }
+
+//   $(function(){
+//     $("#new_comment").on("submit", function(e){
+//       e.preventDefault()
+//       $.ajax({
+//         type: "POST",
+//         url: this.action,
+//         data: $(this).serialize(),
+//         dataType: "json",
+//         success: function(json){
+//           $("#comment_content").val("");
+//           var comment = new Comment(json);
+//           comment.formatComment();
+//         }
+//       });
+//       e.preventDefault();
+//     })
+//   });
+// })
