@@ -1,11 +1,13 @@
-<a href="#" class="js-back" data-id="<%=@workout.id%>"> Back...</a>
-<a href="#" class="js-next" data-id="<%=@workout.id%>">...Next</a>
-
 <div class="container-fluid text-center">
   <h2 class="workoutName"> <%=@workout.name %> </h2>
   <p> Added by: <%= link_to @workout.user.email, user_path(@workout.user), :class => "userName"%> </p>
   <p> <%= last_updated @workout %></p> <!--not sure how to update this yet!-->
 </div>
+
+<a href="#" class="js-back" data-id="<%=@workout.id%>"> Back...</a>
+<a href="#" class="js-next" data-id="<%=@workout.id%>">...Next</a>
+
+<br>
 
 <%= render 'action_options' %><!--not sure how to update this yet!-->
 

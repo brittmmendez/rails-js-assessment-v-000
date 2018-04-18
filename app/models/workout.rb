@@ -15,9 +15,6 @@ class Workout < ActiveRecord::Base
 
     validates :name, :duration, :website, :training_type_name, presence: true
 
-    #default_scope -> { order(created_at: :desc) }
-    #this messes up top watched vids on Home page
-
   def training_type_name=(name)
     training_type = TrainingType.find_or_create_by(name: name)
     self.training_type = training_type

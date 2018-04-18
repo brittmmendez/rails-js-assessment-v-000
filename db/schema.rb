@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20180416150132) do
     t.string   "difficulty"
     t.text     "description"
     t.string   "training_type"
+    t.string   "category"
     t.string   "website"
     t.string   "photo"
     t.integer  "views",            default: 0

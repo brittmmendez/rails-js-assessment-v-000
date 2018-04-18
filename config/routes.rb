@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   post "/favorites/new", to: "favorites#new"
   post "/users/find", to: "users#find"
 
-  get '/workouts/:id/workout_data', to: 'workouts#workout_data'
+  #get '/workouts/:id/workout_data', to: 'workouts#workout_data'
 
 end

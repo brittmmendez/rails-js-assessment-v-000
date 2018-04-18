@@ -2,10 +2,14 @@ class WorkoutsController < ApplicationController
   before_action :authenticate_user!
   include WorkoutsHelper
 
-  def workout_data
-    workout = Workout.find(params[:id])
-    render json: WorkoutSerializer.serialize(workout)
-  end
+  # def workout_data
+  #   @workout = Workout.find(params[:id])
+  #   respond_to do |format|
+  #     format.html { render :show }
+  #     format.json { render json: @workout.to_json(include: [ user: { only: [:email, :id]} ])}
+  #   end
+  #     #render json: WorkoutSerializer.serialize(workout) <<<Used for DIY Serializer
+  # end
 
   def index
     # provide a list of training_types/cats to the view for the filter control
@@ -28,6 +32,11 @@ class WorkoutsController < ApplicationController
       end
 
       Workout.add_view(@workout)
+      respond_to do |format|
+        format.html { render :show }
+        format.json {render json: @workout }
+        #format.json { render json: @workout.to_json(include: [ user: { only: [:email, :id]}])}
+      end
     else
       @workout=Workout.find_by(id: params[:id])
 
@@ -36,7 +45,11 @@ class WorkoutsController < ApplicationController
       end
 
       Workout.add_view(@workout)
-      
+      respond_to do |format|
+        format.html { render :show }
+        format.json {render json: @workout }
+        #format.json { render json: @workout.to_json(include: [ user: { only: [:email, :id]}])}
+      end
     end
   end
 
