@@ -4,7 +4,7 @@ class CreateWorkouts < ActiveRecord::Migration
       t.string :name
       t.integer :duration
       t.string :difficulty
-      t.text :description
+      t.text :description, default: "No Facts Yet!"
       t.string :training_type
       t.string :category
       t.string :website

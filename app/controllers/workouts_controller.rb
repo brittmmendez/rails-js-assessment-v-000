@@ -34,7 +34,7 @@ class WorkoutsController < ApplicationController
       Workout.add_view(@workout)
       respond_to do |format|
         format.html { render :show }
-        format.json {render json: @workout }
+        format.json {render json: @workout , status: 200}
         #format.json { render json: @workout.to_json(include: [ user: { only: [:email, :id]}])}
       end
     else
@@ -47,7 +47,7 @@ class WorkoutsController < ApplicationController
       Workout.add_view(@workout)
       respond_to do |format|
         format.html { render :show }
-        format.json {render json: @workout }
+        format.json {render json: @workout, status: 200 }
         #format.json { render json: @workout.to_json(include: [ user: { only: [:email, :id]}])}
       end
     end

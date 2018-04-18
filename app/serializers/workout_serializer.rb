@@ -1,7 +1,10 @@
 class WorkoutSerializer < ActiveModel::Serializer
-  attributes :id, :name, :duration, :difficulty, :description, :training_type, :category, :website, :photo, :views, :category_id, :user_id, :training_type_id
+  attributes :id, :name, :duration, :difficulty, :description, :training_type, :category, :website, :photo, :views, :category_id, :training_type_id
 
-  
+  belongs_to :user
+  has_many :comments
+
+
   # #DIY Serializer:
   # def self.serialize(workout)
   #   # start with the open brace to create a valid JSON object
