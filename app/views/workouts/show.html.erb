@@ -1,4 +1,5 @@
-<a href="#" class="js-next" data-id="<%=@workout.id%>">Next...</a>
+<a href="#" class="js-back" data-id="<%=@workout.id%>"> Back...</a>
+<a href="#" class="js-next" data-id="<%=@workout.id%>">...Next</a>
 
 <div class="container-fluid text-center">
   <h2 class="workoutName"> <%=@workout.name %> </h2>
@@ -9,29 +10,23 @@
 <%= render 'action_options' %><!--not sure how to update this yet!-->
 
 <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="website embed-responsive-item" src="<%=@workout.website %>" allowfullscreen></iframe>
+  <iframe class="vid embed-responsive-item" src="<%=@workout.website %>" allowfullscreen></iframe>
 </div>
 
 <table style="width:100%"%>
   <tr>
-      Website: <a href="<%=@workout.website %>" target="_blank" ><%=@workout.website %></a> 
+      Website: <a href="<%=@workout.website %>" class="website" target="_blank" ><%=@workout.website %></a> 
   </tr>
   <tr>
-    <td> Duration: <%=@workout.duration %> </td>
-    <td> Training Type: <%=@workout.training_type_name %> </td>
+    <td> Duration: <span class="duration"> <%=@workout.duration%></span> </td>
+    <td> Training Type: <span class="training"> <%=@workout.training_type_name %> </span> </td>
   </tr>
   <tr>
-    <td> Difficulty: <%=@workout.difficulty %> </td>
-    <td> Body Focus: <%=@workout.category.name %> </td>
+    <td> Difficulty: <span class="difficulty"> <%=@workout.difficulty %> </span> </td>
+    <td> Body Focus: <span class="focus"> <%=@workout.category.name %> </span></td>
   </tr>
   <tr>
-    <td> Equipment:
-      <ul>
-        <% @workout.equipments.each do |equipment| %>
-        <li> <%= equipment.name %> </li>
-        <%end%>
-      </ul>
-    </td>
+    <td> Equipment: <span class= "equipment"> <%= @workout.equipments.map{|e| e.name}.join(",")%> </span> </td>
   </tr>
  
 </table>
@@ -42,30 +37,9 @@
      <button type="submit" class="btn btn-sm btn-primary">Create Comment</button>
    <% end %><br>
 
-
-
 <%= link_to "Workout Reviews", workout_comments_path(@workout, @comment), :class => "load_comments" %>
-
 
 <div class= "comments" >
   <ol>
   </ol>
 </div>
-
-
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    $(".js-next").on("click", function() {
-      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-      $.getJSON("/workouts/" + nextId + "/workout_data", function(data) {
-        $(".workoutName").text(data["name"]);
-        $(".userName").attr("data-id", data["user_id"])
-        $(".userName").attr("href", "/users/" + data["user_id"])
-        $(".userName").text(data["user"]["email"])
-        $(".website").attr("src", data["website"])
-        // re-set the id to current on the link
-        $(".js-next").attr("data-id", data["id"]);
-      });
-    });
-  });
-  </script>
