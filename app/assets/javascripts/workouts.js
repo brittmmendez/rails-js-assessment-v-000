@@ -19,7 +19,7 @@
         $(".equipment").html(data["equipments"]["name"]) 
         $("#new_comment").attr("action", "/workouts/" + id + "/comments")
         $(".load_comments").attr("href", "/workouts/" + id + "/comments")
-        $(".comments").html("")
+        $(".comments ol").html("")
 
         // re-set the id to current on the link
         $(".js-next").attr("data-id", id);
@@ -47,8 +47,7 @@
         $(".equipment").html(data["equipment"])
         $("#new_comment").attr("action", "/workouts/" + id + "/comments")
         $(".load_comments").attr("href", "/workouts/" + id + "/comments")
-        $(".comments").html("")
-
+        $(".comments ol").html("")
 
         // re-set the id to current on the link
         $(".js-next").attr("data-id", id);
