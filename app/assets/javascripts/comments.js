@@ -16,51 +16,55 @@ $(function(){
 
 
 
-// Submit Comments via AJAX
-$(function(){
-  $("#new_comment").on("submit", function(e){
-    e.preventDefault()
-    $.ajax({
-      type: "POST",
-      url: this.action,
-      data: $(this).serialize(),
-      success: function(response){
-        //this is where the code shoudl go to make new comment right?
-        $("#comment_content").val("");
-        var $ol = $("div.comments ol")
-        $ol.append(response);
-      }
-    });
-    e.preventDefault();
-  })
-});
+// // Submit Comments via AJAX
+// $(function(){
+//   $("#new_comment").on("submit", function(e){
+//     e.preventDefault()
+//     $.ajax({
+//       type: "POST",
+//       url: this.action,
+//       data: $(this).serialize(),
+//       success: function(response){
+//         //this is where the code shoudl go to make new comment right?
+//         $("#comment_content").val("");
+//         var $ol = $("div.comments ol")
+//         $ol.append(response);
+//       }
+//     });
+//     e.preventDefault();
+//   })
+// });
 
-// $(function() {
-//   function Comment(data) {
-//     this.content = data.content;
-//   }
+$(function() {
+  function Comment(data) {
+    debugger
+    this.id = data.id;
+    this.content = data.content;
+    this.user= data.user.email;
+  }
+  
+    Comment.prototype.formatComment = function() {
+    var html = "<li> <strong> <a href='/users/"+ this.id + "'>" + this.user + "</a> </strong>"+ this.content + "</li>";
+    return html;
+  }
 
-//   Comment.prototype.formatComment = function() {
-//     var html = "" ;
-//     html += "<strong>You</strong>" + " say: " + this.content
-//     $("div.comments ol").append(html);
-//   }
 
-//   $(function(){
-//     $("#new_comment").on("submit", function(e){
-//       e.preventDefault()
-//       $.ajax({
-//         type: "POST",
-//         url: this.action,
-//         data: $(this).serialize(),
-//         dataType: "json",
-//         success: function(json){
-//           $("#comment_content").val("");
-//           var comment = new Comment(json);
-//           comment.formatComment();
-//         }
-//       });
-//       e.preventDefault();
-//     })
-//   });
-// })
+  $(function(){
+    $("#new_comment").on("submit", function(e){
+      e.preventDefault()
+      $.ajax({
+        type: "POST",
+        url: this.action,
+        data: $(this).serialize(),
+        
+        success: function(json){
+          $("#comment_content").val("");
+          var $ol = $("div.comments ol")
+          var comment = new Comment(json);
+          $ol.append(comment.formatComment())
+        }
+      });
+      e.preventDefault();
+    })
+  });
+})

@@ -15,8 +15,8 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.create(comment_params)
     @comment.workout_id = @workout.id
     if @comment.save
-      render 'comments/show', :layout => false
-      #render json: @comment, status: 201
+      #render 'comments/show', :layout => false
+      render json: @comment, status: 201
     else
       render "workouts/show"
     #render json: @comment, status: 201
