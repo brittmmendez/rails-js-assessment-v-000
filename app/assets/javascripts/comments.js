@@ -14,27 +14,6 @@ $(function(){
   })
 })
 
-
-
-// // Submit Comments via AJAX
-// $(function(){
-//   $("#new_comment").on("submit", function(e){
-//     e.preventDefault()
-//     $.ajax({
-//       type: "POST",
-//       url: this.action,
-//       data: $(this).serialize(),
-//       success: function(response){
-//         //this is where the code shoudl go to make new comment right?
-//         $("#comment_content").val("");
-//         var $ol = $("div.comments ol")
-//         $ol.append(response);
-//       }
-//     });
-//     e.preventDefault();
-//   })
-// });
-
 $(function() {
   function Comment(data) {
     debugger
@@ -68,3 +47,23 @@ $(function() {
     })
   });
 })
+
+
+// // Submit Comments via AJAX
+// $(function(){
+//   $("#new_comment").on("submit", function(e){
+//     e.preventDefault()
+//     $.ajax({
+//       type: "POST",
+//       url: this.action,
+//       data: $(this).serialize(),
+//       success: function(response){
+//         //this is where the code shoudl go to make new comment right?
+//         $("#comment_content").val("");
+//         var $ol = $("div.comments ol")
+//         $ol.append(response);
+//       }
+//     });
+//     e.preventDefault();
+//   })
+// });

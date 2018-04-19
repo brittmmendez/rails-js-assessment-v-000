@@ -11,6 +11,10 @@ class CommentsController < ApplicationController
     # end
   end
 
+  def new
+    @comment = Comment.new
+  end
+
   def create
     @comment = current_user.comments.create(comment_params)
     @comment.workout_id = @workout.id
@@ -21,11 +25,6 @@ class CommentsController < ApplicationController
       render "workouts/show"
     #render json: @comment, status: 201
     end
-  end
-
-
-  def new
-    @comment = Comment.new
   end
 
   private
