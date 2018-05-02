@@ -9,7 +9,7 @@ $(function(){
       $ol.html("")
       // call the function for each comment in the array
       json.forEach(function(comment){
-        $ol.append("<li> <strong> <a href='/users/"+comment.user.id + "'>" + comment.user.email + "</a></strong>: " +  comment.content + "</li>");
+        $ol.append(`<li> <strong> <a href='/users/${comment.user.id}'> ${comment.user.email} </a></strong>:${comment.content}</li>`);
       })
     })
     e.preventDefault();
@@ -51,4 +51,20 @@ $(function() {
       e.preventDefault();
     })
   });
+})
+
+$(function(){
+  $(".filter").on("click", function(e){
+    e.preventDefault();
+    $.get(this.href).success(function(json){
+      const result = json.filter(comment => comment.user.email !== "goodbye123@gmail.com")
+      var $ol = $("div.comments ol")
+      $ol.html("")
+      // call the function for each comment in the array
+      result.forEach(function(comment){
+        $ol.append(`<li> <strong> <a href='/users/${comment.user.id}'> ${comment.user.email} </a></strong>:${comment.content}</li>`);
+  })
+  e.preventDefault();
+})
+})
 })

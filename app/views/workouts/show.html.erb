@@ -17,7 +17,7 @@
 
 <table style="width:100%"%>
   <tr>
-      Website: <a href="<%=@workout.website %>" class="website" target="_blank" ><%=@workout.website %></a> 
+      Website: <a href="<%=@workout.website %>" class="website" target="_blank" ><%=@workout.website %></a>
   </tr>
   <tr>
     <td> Duration: <span class="duration"> <%=@workout.duration%></span> </td>
@@ -30,7 +30,7 @@
   <tr>
     <td> Equipment: <span class= "equipment"> <%= @workout.equipments.map{|e| e.name}.join(",")%> </span> </td>
   </tr>
- 
+
 </table>
 
 <h4>Add a Review:</h4>
@@ -43,7 +43,9 @@
    <!--Not sure how to get this to load comments for new workout after I use the next or back buttons seems event listener isn't picking it up-->
 <%= link_to "Workout Reviews", workout_comments_path(@workout, @comment), :class => "load_comments" %>
 
-<div class= "comments" > 
+<%= link_to "Filter", workout_comments_path(@workout, @comment), :class => "filter" %>
+
+<div class= "comments" >
   <ol>
   </ol>
 </div>
