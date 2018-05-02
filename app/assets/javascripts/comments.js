@@ -30,17 +30,21 @@ $(function() {
 
 
   $(function(){
+    // use Jquery event handler for whn btn is clicked to submit
     $("#new_comment").on("submit", function(e){
       e.preventDefault()
       $.ajax({
         type: "POST",
         url: this.action,
+        //Encode a set of form elements as a string for submission.
         data: $(this).serialize(),
-
         success: function(json){
+          //empty comment content box in form
           $("#comment_content").val("");
           var $ol = $("div.comments ol")
+          // instantiate a new Comment object by running our constructor function and set comment variable equal to it
           var comment = new Comment(json);
+          // call prototype .formatComment attribute on comment instance that points to the function and append it to $ol
           $ol.append(comment.formatComment())
         }
       });
@@ -48,23 +52,3 @@ $(function() {
     })
   });
 })
-
-
-// // Submit Comments via AJAX
-// $(function(){
-//   $("#new_comment").on("submit", function(e){
-//     e.preventDefault()
-//     $.ajax({
-//       type: "POST",
-//       url: this.action,
-//       data: $(this).serialize(),
-//       success: function(response){
-//         //this is where the code shoudl go to make new comment right?
-//         $("#comment_content").val("");
-//         var $ol = $("div.comments ol")
-//         $ol.append(response);
-//       }
-//     });
-//     e.preventDefault();
-//   })
-// });
