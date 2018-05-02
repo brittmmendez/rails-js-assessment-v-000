@@ -18,14 +18,13 @@ $(function(){
 
 $(function() {
   function Comment(data) {
-    debugger
     this.id = data.id;
     this.content = data.content;
     this.user= data.user.email;
   }
 
     Comment.prototype.formatComment = function() {
-    var html = "<li> <strong> <a href='/users/"+ this.id + "'>" + this.user + "</a> </strong>"+ this.content + "</li>";
+    var html = "<li> <strong> <a href='/users/"+ this.id + "'>" + this.user + "</a></strong>: "+ this.content + "</li>";
     return html;
   }
 
